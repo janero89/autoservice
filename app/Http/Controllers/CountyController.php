@@ -4,19 +4,20 @@ use Autoservice\Http\Requests;
 use Autoservice\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Autoservice\Http\Entities\County;
 
-class OperationController extends Controller {
+class CountyController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-
-
 	public function index()
 	{
-		//
+        $departamentos = County::all();
+        return view ('counties')->with(compact('departamentos'));
+
 	}
 
 	/**
@@ -26,7 +27,8 @@ class OperationController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view ('createcounty');
+
 	}
 
 	/**
@@ -36,7 +38,7 @@ class OperationController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		return "inserto";
 	}
 
 	/**
@@ -47,7 +49,8 @@ class OperationController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $departamentos = County::find($id);
+        return view ('county')->with(compact('departamentos'));
 	}
 
 	/**
@@ -82,37 +85,5 @@ class OperationController extends Controller {
 	{
 		//
 	}
-
-
-    /**
-     * @param $value1
-     * @param $value2
-     * @return string
-     */
-    public function sum($value1,$value2)
-    {
-        $total=$value1+$value2;
-        return view('operations.sum')->with(compact('value1','value2','total'));
-
-    }
-
-    public function subtraction($value1,$value2)
-    {
-        $total = $value1-$value2;
-        return view('operations.subtraction')->with(compact('value1','value2','total'));
-    }
-
-    public function multiplication($value1,$value2)
-    {
-        $total = $value1*$value2;
-        return view('operations.multiplication')->with(compact('value1','value2','total'));
-    }
-
-    public function division($value1,$value2)
-    {
-        $total = $value1/$value2;
-        return view('operations.division')->with(compact('value1','value2','total'));
-    }
-
 
 }

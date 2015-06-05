@@ -1,5 +1,6 @@
 <?php
 
+use Autoservice\Http\Entities\County;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,6 +11,19 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//Route::get('/', 'WelcomeController@index');
+
+Route::get('/counties', function ()
+{
+    $departamentos = County::all();
+    return view ('counties')->with(compact('departamentos'));
+
+});
+
+Route::resource('departamentos','CountyController');
+
+Route::resource('ciudades','CityController');
+
 
 Route::group(['prefix' => 'operations'], function (){
 

@@ -4,19 +4,19 @@ use Autoservice\Http\Requests;
 use Autoservice\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Autoservice\Http\Entities\City;
 
-class OperationController extends Controller {
+class CityController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-
-
 	public function index()
 	{
-		//
+        $ciudades = City::all();
+        return view ('cities')->with(compact('ciudades'));
 	}
 
 	/**
@@ -47,7 +47,8 @@ class OperationController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        $ciudades = City::find($id);
+        return view ('cities')->with(compact('ciudades'));
 	}
 
 	/**
@@ -82,37 +83,5 @@ class OperationController extends Controller {
 	{
 		//
 	}
-
-
-    /**
-     * @param $value1
-     * @param $value2
-     * @return string
-     */
-    public function sum($value1,$value2)
-    {
-        $total=$value1+$value2;
-        return view('operations.sum')->with(compact('value1','value2','total'));
-
-    }
-
-    public function subtraction($value1,$value2)
-    {
-        $total = $value1-$value2;
-        return view('operations.subtraction')->with(compact('value1','value2','total'));
-    }
-
-    public function multiplication($value1,$value2)
-    {
-        $total = $value1*$value2;
-        return view('operations.multiplication')->with(compact('value1','value2','total'));
-    }
-
-    public function division($value1,$value2)
-    {
-        $total = $value1/$value2;
-        return view('operations.division')->with(compact('value1','value2','total'));
-    }
-
 
 }
